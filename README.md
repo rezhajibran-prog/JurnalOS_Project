@@ -15,7 +15,7 @@ File citra ISO berukuran besar tidak disimpan langsung di GitHub dan didistribus
 - **Nama File ISO**: `JurnalOS-final.iso`
 - **Ukuran File**: `4.5 GB` (`4.5G`)
 - **SHA256 Checksum**: `4653c4d6476794209b17022145ffaec315d2976fefdfd28639cc2067e89cef56`
-- **Tautan Google Drive (ISO & `.sha256`)**: `[Masukkan Link Google Drive Di Sini]`
+- **Tautan Google Drive (ISO & `.sha256`)**: `https://drive.google.com/drive/folders/1D_mP33o_SD-_wqtRkx_GY8HXJM0FcQeO`
 - **Video Demonstrasi**: `https://youtu.be/DrDuMT9Sas8?si=Jb51hSeKBSgl5zie`
 
 ### Cara Verifikasi SHA256 di Windows (PowerShell)
