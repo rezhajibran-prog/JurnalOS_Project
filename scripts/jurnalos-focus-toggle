@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+STATE_FILE="/tmp/jurnalos-focus-${USER:-vboxuser}.state"
+ICON_ON="/usr/share/pixmaps/jurnalos-focus-on.png"
+ICON_OFF="/usr/share/pixmaps/jurnalos-focus-off.png"
+
+[ -f "$ICON_ON" ] || ICON_ON="dialog-information"
+[ -f "$ICON_OFF" ] || ICON_OFF="dialog-information"
+
+if [ -f "$STATE_FILE" ] && [ "$(cat "$STATE_FILE")" = "on" ]; then
+    echo "off" > "$STATE_FILE"
+    xfconf-query -c xfce4-notifyd -p /do-not-disturb -s false 2>/dev/null || true
+    notify-send -i "$ICON_OFF" "Mode Fokus Akademik" "Mode Fokus dimatikan."
+else
+    echo "on" > "$STATE_FILE"
+    xfconf-query -c xfce4-notifyd -p /do-not-disturb -s true 2>/dev/null || true
+    notify-send -i "$ICON_ON" "Mode Fokus Akademik" "Mode Fokus AKTIF — Minimalkan distraksi."
+fi

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=JurnalOS Apply Desktop Layout
+Exec=/usr/local/bin/jurnalos-apply-desktop-rc.sh
+OnlyShowIn=XFCE;
+NoDisplay=true

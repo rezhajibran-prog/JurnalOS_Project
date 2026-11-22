@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=JurnalOS Welcome
+Comment=Layar sambutan pengguna baru JurnalOS
+Exec=/usr/local/bin/jurnalos-welcome.py
+Icon=distributor-logo
+Terminal=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true

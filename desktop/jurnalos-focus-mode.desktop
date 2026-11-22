@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Mode Fokus Akademik
+Comment=Aktifkan mode belajar bebas gangguan
+Exec=/usr/local/bin/jurnalos-focus-toggle
+Icon=security-high
+Terminal=false
+Categories=Utility;Education;

@@ -1,0 +1,19 @@
+#!/bin/bash
+SCHEMA="net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/"
+MARKER="$HOME/.config/jurnalos/plank-initialized"
+mkdir -p "$HOME/.config/jurnalos"
+if [ ! -f "$MARKER" ]; then
+    if gsettings set "$SCHEMA" position "'bottom'" &&
+       gsettings set "$SCHEMA" alignment "'center'" &&
+       gsettings set "$SCHEMA" items-alignment "'center'" &&
+       gsettings set "$SCHEMA" icon-size 44 &&
+       gsettings set "$SCHEMA" zoom-enabled true &&
+       gsettings set "$SCHEMA" zoom-percent 115 &&
+       gsettings set "$SCHEMA" theme "'Matte'" &&
+       gsettings set "$SCHEMA" hide-mode "'intelligent'" &&
+       gsettings set "$SCHEMA" tooltips-enabled true
+    then
+        touch "$MARKER"
+    fi
+fi
+exec plank

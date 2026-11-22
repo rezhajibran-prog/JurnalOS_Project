@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JurnalOS Guide Book — Panduan Sistem &amp; Ekosistem Riset</title>
+  <style>
+    :root {
+      --bg-main: #111114;
+      --bg-card: #19191f;
+      --bg-soft: #22222a;
+      --text-main: #f3f1f2;
+      --text-muted: #b8b3b8;
+      --accent: #b91c2c;
+      --accent-soft: rgba(185, 28, 44, 0.18);
+      --border: #2f2c33;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DejaVu Sans", "Liberation Sans", Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2b0910 0%, #16161c 65%);
+      border-bottom: 2px solid var(--accent);
+      padding: 28px 24px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    nav a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    section {
+      margin-top: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 21px;
+      color: #ff6b7a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      margin: 18px 0 6px 0;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 8px 0;
+      color: var(--text-main);
+    }
+
+    ul {
+      margin: 8px 0 14px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: #ff8592;
+      border: 1px solid rgba(185, 28, 44, 0.45);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .app-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    code {
+      background: #0d0d10;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ffd0d5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <span class="badge">JurnalOS &bull; Linux Mint 22 Xfce</span>
+      <h1>JurnalOS Guide Book</h1>
+      <p class="subtitle">Panduan filosofi desain, fitur inti sistem operasi, dan ekosistem aplikasi riset serta penulisan akademik.</p>
+      <nav>
+        <a href="#filosofi">1. Filosofi Hitam &amp; Merah</a>
+        <a href="#fitur-os">2. Fitur Inti Sistem Operasi</a>
+        <a href="#aplikasi">3. Ekosistem Aplikasi Riset &amp; Penulisan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="filosofi">
+      <h2>1. Filosofi Hitam &amp; Merah</h2>
+      <p>
+        JurnalOS dirancang dengan nuansa gelap (<em>charcoal/obsidian</em>) berpadu aksen merah tua (<em>crimson/maroon</em>) untuk menciptakan ruang kerja akademik yang tenang, fokus, dan konsisten.
+      </p>
+      <ul>
+        <li><strong>Mengurangi Kelelahan Mata (<em>Low Eye Strain</em>):</strong> Permukaan gelap membantu menjaga kenyamanan visual saat membaca jurnal ilmiah panjang, menelaah literatur, atau menyusun catatan dalam durasi lama.</li>
+        <li><strong>Fokus &amp; Hierarki Visual dengan Aksen Merah:</strong> Warna merah digunakan secara terukur sebagai penanda fokus aktif, batas jendela/aksen antarmuka, dan identitas khas JurnalOS agar mata langsung mengenali elemen utama tanpa gangguan visual berlebihan.</li>
+        <li><strong>Estetika Akademik Minim Distraksi:</strong> Menghindari ornamen berat agar perhatian pengguna tertuju pada isi riset, argumen, sitasi, dan naskah yang sedang dikerjakan.</li>
+      </ul>
+    </section>
+
+    <section id="fitur-os">
+      <h2>2. Fitur Inti Sistem Operasi</h2>
+      <ul>
+        <li><strong>Mode Fokus Akademik (Tombol Perisai):</strong> Fitur unggulan untuk membantu menciptakan suasana kerja yang lebih tenang dan minim gangguan saat membaca literatur, menyusun catatan, atau menulis naskah—selaras dengan filosofi tampilan gelap beraksen merah JurnalOS.</li>
+        <li><strong>Lingkungan Desktop Xfce + Dock Plank:</strong> Menggabungkan desktop Xfce yang ringan dan responsif dengan <em>dock</em> Plank untuk akses cepat ke aplikasi utama serta pintasan di <code>~/Desktop</code>.</li>
+        <li><strong>Zona Waktu Indonesia (<code>Asia/Jakarta</code> / WIB):</strong> Sistem disiapkan untuk zona waktu WIB sehingga pencatatan waktu berkas, catatan riset, dan aktivitas sistem selaras dengan waktu lokal.</li>
+        <li><strong>Manajemen Daya dengan TLP:</strong> Membantu mengoptimalkan konsumsi daya dan efisiensi energi perangkat, terutama saat bekerja mobile atau dalam sesi riset berkelanjutan.</li>
+        <li><strong>Pengelolaan Paket &amp; Kontrol Versi (<code>apt</code> &amp; <code>Git</code>):</strong> Memudahkan pemasangan/pembaruan perangkat lunak melalui <code>apt</code> sekaligus pelacakan riwayat perubahan skrip, catatan, atau proyek lewat <code>Git</code>.</li>
+        <li><strong>Mode Live &amp; Instalasi Sistem:</strong> Dapat dijalankan langsung sebagai sesi <em>live</em> untuk eksplorasi atau diinstal ke penyimpanan permanen melalui <em>installer</em> sistem.</li>
+      </ul>
+    </section>
+
+    <section id="aplikasi">
+      <h2>3. Ekosistem Aplikasi Riset &amp; Penulisan</h2>
+      <p>
+        Aplikasi pada JurnalOS dikurasi untuk mendukung siklus kerja akademik mulai dari pengumpulan referensi, pembacaan dan anotasi, manajemen catatan, hingga penyusunan dokumen akhir.
+      </p>
+
+      <div class="app-grid">
+        <div class="app-card">
+          <span class="badge">Referensi &amp; Sitasi</span>
+          <h3>Zotero</h3>
+          <p>Mengumpulkan, mengorganisir, dan menyitasi sumber referensi (jurnal, artikel, buku, tautan) serta mengelola daftar pustaka secara rapi.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Referensi &amp; BibTeX</span>
+          <h3>JabRef</h3>
+          <p>Mengelola basis data referensi berbasis BibTeX/literatur ilmiah yang terstruktur, cocok untuk alur penulisan ilmiah dan dokumen terformat.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Catatan &amp; Pengetahuan</span>
+          <h3>Obsidian</h3>
+          <p>Menyusun catatan harian, ringkasan bacaan, dan tautan ide antar-konsep (<em>knowledge base</em>) berbasis berkas teks/Markdown yang terorganisir.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Membaca PDF</span>
+          <h3>Okular</h3>
+          <p>Membaca berkas PDF dan dokumen akademik dengan cepat, dilengkapi fitur penandaan halaman, pencarian teks, serta catatan bacaan.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Catatan &amp; Anotasi</span>
+          <h3>Xournal++</h3>
+          <p>Membuat catatan tulisan tangan, sketsa diagram/alur, serta memberi anotasi langsung pada berkas PDF materi kuliah atau jurnal.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Manajemen PDF</span>
+          <h3>PDF Arranger</h3>
+          <p>Menggabungkan beberapa berkas PDF, memotong halaman yang tidak perlu, memutar orientasi, dan menyusun ulang urutan halaman dengan mudah.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Pustaka E-Book</span>
+          <h3>Calibre</h3>
+          <p>Mengelola koleksi buku digital (<em>e-book</em>) dan bahan bacaan referensi agar metadata, judul, dan katalog tersusun rapi.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Kamus &amp; Istilah</span>
+          <h3>GoldenDict-ng</h3>
+          <p>Membantu pencarian cepat arti kata, istilah teknis, maupun terjemahan saat membaca referensi asing atau literatur akademik.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Dokumen &amp; Naskah</span>
+          <h3>LibreOffice Writer</h3>
+          <p>Menyusun, menyunting, dan memformat dokumen teks, laporan, serta naskah akademik standar.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Konversi &amp; Typesetting</span>
+          <h3>Pandoc &amp; TeX Live</h3>
+          <p><strong>Pandoc</strong> mengonversi dokumen antar-format (seperti Markdown ke PDF/DOCX/LaTeX), sementara <strong>TeX Live</strong> menyediakan ekosistem typesetting LaTeX untuk dokumen ilmiah.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="mode-fokus-akademik">
+      <h2>4. Detail Mode Fokus Akademik</h2>
+      <p>
+        Meskipun seluruh aplikasi riset seperti Zotero, Obsidian, dan Xournal++ sudah terpasang secara bawaan di <strong>JurnalOS</strong>, fitur <strong>Mode Fokus Akademik</strong> (terhubung dengan tombol perisai di panel) berfungsi menyesuaikan perilaku sistem saat diaktifkan agar pengguna dapat bekerja lebih tenang dan terfokus.
+      </p>
+      <div class="app-grid">
+        <div class="app-card">
+          <span class="badge">Notifikasi</span>
+          <h3>Do Not Disturb</h3>
+          <p>Menahan notifikasi <em>pop-up</em> dari sistem maupun aplikasi lain agar konsentrasi tidak terpecah saat membaca jurnal atau menulis.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Performa &amp; Daya</span>
+          <h3>Profil Sistem &amp; Manajemen Daya</h3>
+          <p>Menyesuaikan pengelolaan daya dan sumber daya sistem agar perangkat tetap stabil dan efisien saat membuka banyak referensi, PDF, dan editor sekaligus.</p>
+        </div>
+
+        <div class="app-card">
+          <span class="badge">Ruang Kerja</span>
+          <h3>Workspace Terfokus</h3>
+          <p>Menata lingkungan dan alur kerja agar tetap rapi serta meminimalkan distraksi visual selama sesi riset berlangsung, lalu kembali normal saat mode dimatikan.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

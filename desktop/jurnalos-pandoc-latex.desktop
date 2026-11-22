@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pandoc & TeX Live (CLI)
+Comment=Konversi dokumen dengan Pandoc dan kompilasi LaTeX dengan pdflatex
+Exec=x-terminal-emulator -e bash -c 'echo "=== JurnalOS: Pandoc & TeX Live (pdflatex) ==="; pandoc --version | head -n 2; pdflatex --version | head -n 2; echo ""; echo "Contoh Pandoc : pandoc catatan.md -o hasil.pdf"; echo "Contoh LaTeX  : pdflatex dokumen.tex"; echo ""; exec bash'
+Icon=utilities-terminal
+Terminal=false
+Categories=Office;Education;Publishing;
