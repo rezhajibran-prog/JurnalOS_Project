@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=JurnalOS Guide Book
-Comment=Panduan fitur dan aplikasi di JurnalOS
-Exec=exo-open /usr/share/doc/jurnalos/guidebook.html
-Icon=help-contents
-Terminal=false
-Categories=Documentation;Education;Utility;
