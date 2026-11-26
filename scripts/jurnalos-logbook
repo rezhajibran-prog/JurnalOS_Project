@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+set -u
+CSS="/usr/local/share/jurnalos-logbook/white-theme.css"
+[ -d "$HOME/Documents/JurnalOS-Logbook" ] && BASE="$HOME/Documents/JurnalOS-Logbook" || BASE="/etc/skel/Documents/JurnalOS-Logbook"
+mkdir -p "$BASE"
+
+zrun() {
+  local d rc
+  d="$(mktemp -d)"
+  [ -f "$CSS" ] && { mkdir -p "$d/gtk-3.0"; cp "$CSS" "$d/gtk-3.0/gtk.css"; }
+  GTK_THEME="Adwaita:light" XDG_CONFIG_HOME="$d" zenity "$@"
+  rc=$?
+  rm -rf "$d"
+  return $rc
+}
+
+[ -z "$(ls -A "$BASE" 2>/dev/null)" ] && {
+  mkdir -p "$BASE/catatan-bebas/Lampiran" "$BASE/riset-dan-ide/Lampiran"
+  printf "# Catatan Bebas\n\nCatatan bebas untuk materi atau ide apa pun.\n" > "$BASE/catatan-bebas/log.md"
+  printf "# Riset dan Ide\n\nRencana proyek, referensi, atau eksperimen.\n" > "$BASE/riset-dan-ide/log.md"
+}
+slug() { printf "%s" "$1" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'; }
+lfile() { [ -f "$1/log.md" ] && printf "%s" "$1/log.md" || printf "%s" "$1/catatan.md"; }
+ltitle() {
+  local f h; f="$(lfile "$1")"
+  [ -f "$f" ] && h=$(grep -m 1 -E '^#[[:space:]]+' "$f" | sed -E 's/^#[[:space:]]+//')
+  [ -n "${h:-}" ] && printf "%s" "$h" || basename "$1" | tr '-' ' '
+}
+lprev() {
+  local f p; f="$(lfile "$1")"
+  [ -f "$f" ] && p=$(grep -v -E '^(#|[[:space:]]*$)' "$f" | head -n 1 | tr -d '\r')
+  printf "%.75s" "${p:-Klik Kelola untuk membuka atau mengedit}"
+}
+lopen() { (command -v exo-open >/dev/null && exo-open "$1" || xdg-open "$1") >/dev/null 2>&1 & }
+ledit() {
+  local d="$1" f t u rc; f="$(lfile "$d")"; t="$(ltitle "$d")"
+  [ ! -f "$f" ] && printf "# %s\n\n" "$t" > "$f"
+  u=$(zrun --text-info --editable --title="JurnalOS-Logbook — $t" --filename="$f" --width=760 --height=520 --ok-label="Simpan" --cancel-label="Kembali")
+  rc=$?
+  [ "$rc" -eq 0 ] && { printf "%s\n" "$u" > "$f"; zrun --info --title="JurnalOS-Logbook" --text="<b>$t</b> tersimpan." --width=300; }
+}
+lrename() {
+  local d="$1" old new f tmp; old="$(ltitle "$d")"
+  new=$(zrun --entry --title="Ubah Judul" --text="Judul baru:" --entry-text="$old" --width=400)
+  [ $? -ne 0 ] || [ -z "$new" ] && return
+  f="$(lfile "$d")"
+  if [ -f "$f" ] && grep -q -E '^#[[:space:]]+' "$f"; then
+    sed -i "0,/^#[[:space:]]\+.*/s//# $new/" "$f"
+  else
+    tmp="$(mktemp)"; { printf "# %s\n\n" "$new"; [ -f "$f" ] && cat "$f"; } > "$tmp"; mv "$tmp" "$f"
+  fi
+}
+ldel() {
+  local d="$1" t; t="$(ltitle "$d")"
+  zrun --question --title="Hapus Item" --text="Hapus <b>$t</b> beserta foldernya?" --ok-label="Hapus" --cancel-label="Batal" --width=340 && rm -rf "$d"
+}
+ladd() {
+  local t s target
+  t=$(zrun --entry --title="Tambah Catatan" --text="Judul catatan / materi baru:" --width=400)
+  [ $? -ne 0 ] || [ -z "$t" ] && return
+  s="$(slug "$t")"; [ -z "$s" ] && s="catatan-baru"
+  target="$BASE/$s"; [ -e "$target" ] && target="${target}-$(date +%s)"
+  mkdir -p "$target/Lampiran"
+  printf "# %s\n\nTulis catatan untuk **%s** di sini.\n" "$t" "$t" > "$target/log.md"
+}
+lmanage() {
+  local d="$BASE/$1" t act; [ ! -d "$d" ] && return
+  while true; do
+    t="$(ltitle "$d")"
+    act=$(zrun --list --title="JurnalOS-Logbook — $t" --text="Aksi untuk <b>$t</b>:" --column="Aksi" --column="Keterangan" --width=500 --height=250 --ok-label="Pilih" --cancel-label="Kembali" "Buka / Edit" "Baca dan ubah isi" "Ubah Judul" "Ganti judul catatan" "Buka Folder" "Buka folder di File Manager" "Hapus" "Hapus item dan folder")
+    [ $? -ne 0 ] || [ -z "$act" ] && break
+    case "$act" in
+      "Buka / Edit") ledit "$d" ;;
+      "Ubah Judul") lrename "$d" ;;
+      "Buka Folder") lopen "$d" ;;
+      "Hapus") ldel "$d"; [ ! -d "$d" ] && break ;;
+    esac
+  done
+}
+while true; do
+  mapfile -t DIRS < <(find "$BASE" -mindepth 1 -maxdepth 1 -type d | sort)
+  ROWS=()
+  for d in "${DIRS[@]}"; do ROWS+=("$(basename "$d")" "$(ltitle "$d")" "$(lprev "$d")"); done
+  sel=$(zrun --list --title="JurnalOS-Logbook" --text="<b>JurnalOS-Logbook</b> — Kelola daftar catatan dan materi bebas." --column="ID" --column="Judul" --column="Cuplikan" --print-column=1 --width=820 --height=420 --ok-label="Kelola Item" --cancel-label="Tutup" --extra-button="Tambah Baru" --extra-button="Buka Folder Utama" "${ROWS[@]}")
+  rc=$?
+  if [ "$rc" -eq 0 ] && [ -n "$sel" ]; then lmanage "$sel"
+  elif [ "$sel" = "Tambah Baru" ]; then ladd
+  elif [ "$sel" = "Buka Folder Utama" ]; then lopen "$BASE"
+  elif [ "$rc" -eq 1 ] && [ -z "$sel" ]; then exit 0
+  fi
+done
