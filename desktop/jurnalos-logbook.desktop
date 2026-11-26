@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=JurnalOS-Logbook
+Comment=Kelola daftar catatan dan materi bebas di JurnalOS
+Exec=/usr/local/bin/jurnalos-logbook
+Icon=accessories-dictionary
+Terminal=false
+Categories=Utility;Office;Education;
