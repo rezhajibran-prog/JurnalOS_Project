@@ -24,4 +24,4 @@ File citra ISO berukuran besar tidak disimpan langsung di GitHub dan didistribus
 ## Cara Verifikasi SHA256 di Windows (PowerShell)
 
 ```powershell
-Get-FileHash .\JurnalOS-final.iso -Algorithm SHA256
+Get-FileHash .\JurnalOS-final-3.iso -Algorithm SHA256
