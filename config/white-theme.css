@@ -1,0 +1,5 @@
+window, dialog, messagedialog { background-color: #FFFFFF; color: #0F172A; }
+label { color: #0F172A; }
+treeview, treeview.view, textview, textview text { background-color: #FFFFFF; color: #0F172A; }
+treeview.view:selected, treeview.view:selected:focus { background-color: #DBEAFE; color: #0F172A; }
+entry, button { background-color: #F8FAFC; color: #0F172A; }
